@@ -11,16 +11,6 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'YourFolderName', // Specify the folder name in Cloudinary
-    format: async (req, file) => {
-      // Dynamically determine the file format based on the mimetype
-      if (file.mimetype.startsWith('image/')) {
-        return 'auto'; // Use Cloudinary's auto format for images
-      } else if (file.mimetype.startsWith('video/')) {
-        return 'mp4'; // Convert videos to mp4 for consistency
-      } else {
-        throw new Error('Unsupported file type'); // Handle unsupported file types
-      }
-    },
     public_id: (req, file) => file.filename, // Use file's original name as the public ID
   },
 });
