@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const { storage } = require('../config/cloudinaryConfig');
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: 'uploads/pictures', // Use the same directory for tweet media
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname); // Naming convention for files
-    },
-  }),
-});
+
+const upload = multer({ storage });
+
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: 'uploads/pictures', // Use the same directory for tweet media
+//     filename: (req, file, cb) => {
+//       cb(null, Date.now() + '-' + file.originalname); // Naming convention for files
+//     },
+//   }),
+// });
 
 const { createTweet, getAllTweets, getTweetById, deleteTweet, likeTweet, retweet, unretweet, postReply, getReplies } = require('../controllers/tweetController');
 const verifyToken = require('../middlewares/verifyToken');

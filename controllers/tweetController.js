@@ -15,9 +15,9 @@ exports.createTweet = async (req, res) => {
     const { content, authorId } = req.body;
 
     let mediaUrl = '';
-    if (req.file) {
-      // Construct the URL for the uploaded file
-      mediaUrl = `${req.protocol}://${req.get('host')}/uploads/pictures/${req.file.filename}`;
+     if (req.file) {
+      // Use the URL provided by Cloudinary
+      mediaUrl = req.file.path;
     }
 
     // Determine if the file is an image or a video based on the mimetype
@@ -171,10 +171,10 @@ exports.postReply = async (req, res) => {
     const { content } = req.body;
     const tweetId = req.params.id;
 
-    let mediaUrl = '';
+      let mediaUrl = '';
     if (req.file) {
-      // Construct the URL for the uploaded file
-      mediaUrl = `${req.protocol}://${req.get('host')}/uploads/pictures/${req.file.filename}`;
+      // Use the URL provided by Cloudinary
+      mediaUrl = req.file.path;
     }
 
     // Determine if the file is an image or a video based on the mimetype

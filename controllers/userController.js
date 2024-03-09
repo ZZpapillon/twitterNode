@@ -12,8 +12,8 @@ exports.register = async (req, res, next) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const defaultProfilePicture = '/uploads/pictures/placeholderProf.jpeg';
-        const defaultBackgroundPicture = '/uploads/pictures/placeholderBg.jpeg';
+       const defaultProfilePicture = 'https://res.cloudinary.com/duvnbonci/image/upload/YourFolderName/xnilgdvqynzukz5xo8m1';
+       const defaultBackgroundPicture = 'https://res.cloudinary.com/duvnbonci/image/upload/YourFolderName/vhb68lagupw92rya1v0h';
 
 
        const newUser = new User({
