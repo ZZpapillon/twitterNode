@@ -12,7 +12,7 @@ const upload = multer({
     },
   }),
 });
-
+//da
 
 
 const { login, register, getAllUsers, getUser, updateUser, followUser, unfollowUser } = require('../controllers/userController');
