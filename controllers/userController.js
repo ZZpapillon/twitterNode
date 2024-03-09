@@ -91,10 +91,10 @@ exports.updateUser = async (req, res, next) => {
     const updateData = { firstName, lastName, bio };
 
     if (req.files['profilePicture']) {
-      updateData.profilePicture = `/uploads/pictures/${req.files['profilePicture'][0].filename}`;
+      updateData.profilePicture = req.files['profilePicture'][0].path;
     }
     if (req.files['backgroundPicture']) {
-      updateData.backgroundPicture = `/uploads/pictures/${req.files['backgroundPicture'][0].filename}`;
+      updateData.backgroundPicture = req.files['backgroundPicture'][0].path;
     }
 
     const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true });
