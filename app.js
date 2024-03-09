@@ -7,6 +7,8 @@ require('dotenv').config();
 const cors = require('cors');
 const http = require('http');
 const socketIo = require('socket.io');
+const axios = require('axios');
+const cron = require('node-cron');
 
 
 
@@ -96,6 +98,20 @@ app.use('/api', userRouter);
 app.use('/api', tweetRouter);
 app.use('/api', messageRouter);
 app.use('/api', conversationRouter);
+
+// Keep-Alive Route
+app.get('/keep-alive', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// Schedule a cron job to ping the keep-alive route every 14 minutes
+cron.schedule('*/14 * * * *', function() {
+  console.log('Sending keep-alive ping');
+  // Replace 'http://localhost:3000' with your actual server URL
+  axios.get('https://twitternode.onrender.com')
+    .then(response => console.log(`Keep-alive ping status: ${response.status}`))
+    .catch(error => console.error('Error sending keep-alive ping:', error));
+});
 
 
 
