@@ -85,6 +85,7 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
+    console.log(req.files); 
   try {
     const userId = req.params.id;
     const { firstName, lastName, bio } = req.body;
